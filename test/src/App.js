@@ -1,3 +1,5 @@
+import {useState} from 'react';
+
 function ProductCategoryRow({ category }) {
   return (
     <tr>
@@ -55,10 +57,13 @@ function ProductTable({ products }) {
   );
 }
 
-function SearchBar() {
+function SearchBar({ filterText, inStockOnly }) {
+  const [filterText, setFilterText] = useState('');
+  const [inStockOnly, setInStockOnly] = useState(false);
+
   return (
     <form>
-      <input type="text" placeholder="Search..." />
+      <input type="text"  value={filterText}  placeholder="Search..." onChange={(e) => onFilterTextChange(e.target.value)} />
       <label>
         <input type="checkbox" />
         {' '}
@@ -69,10 +74,17 @@ function SearchBar() {
 }
 
 function FilterableProductTable({ products }) {
+  const [filterText, setFilterText] = useState(' ');
+  const [inStockOnly, setInStockOnly] = useState(false);
+
   return (
     <div>
-      <SearchBar />
-      <ProductTable products={products} />
+      <SearchBar filterText={filterText}  
+    inStockOnly={inStockOnly} onFilterTextChange={setFilterText}
+    onInStockOnlyChange={setInStockOnly} />
+      <ProductTable products={products}
+    filterText={filterText}
+    inStockOnly={inStockOnly}  />
     </div>
   );
 }
