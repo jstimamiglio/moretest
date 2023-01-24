@@ -58,12 +58,11 @@ function ProductTable({ products }) {
 }
 
 function SearchBar({ filterText, inStockOnly }) {
-  const [filterText, setFilterText] = useState('');
-  const [inStockOnly, setInStockOnly] = useState(false);
+ 
 
   return (
     <form>
-      <input type="text"  value={filterText}  placeholder="Search..." onChange={(e) => onFilterTextChange(e.target.value)} />
+      <input type="text"  value={filterText}  placeholder="Search..." />
       <label>
         <input type="checkbox" />
         {' '}
